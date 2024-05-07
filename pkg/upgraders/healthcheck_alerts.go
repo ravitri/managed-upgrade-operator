@@ -30,7 +30,7 @@ func CriticalAlerts(metricsClient metrics.Metrics, cfg *upgraderConfig, ug *upgr
 	alerts, err := metricsClient.Query(healthCheckQuery)
 	if err != nil {
 		logger.Info("Unable to query metrics to check for open alerts")
-		metricsClient.UpdateMetricClusterCheckFailed(ug.Name)
+		metricsClient.UpdateMetricClusterCheckFailed(ug.Name, "alerts")
 		return false, fmt.Errorf("unable to query critical alerts: %s", err)
 	}
 
@@ -51,12 +51,12 @@ func CriticalAlerts(metricsClient metrics.Metrics, cfg *upgraderConfig, ug *upgr
 		}
 
 		logger.Info(fmt.Sprintf("Critical alert(s) firing: %s. Cannot continue upgrade", strings.Join(alert, ", ")))
-		metricsClient.UpdateMetricClusterCheckFailed(ug.Name)
+		metricsClient.UpdateMetricClusterCheckFailed(ug.Name, "alerts")
 
 		return false, fmt.Errorf("critical alert(s) firing: %s", strings.Join(alert, ", "))
 	}
 
 	logger.Info("Prehealth check for critical alerts passed")
-	metricsClient.UpdateMetricClusterCheckSucceeded(ug.Name)
+	metricsClient.UpdateMetricClusterCheckSucceeded(ug.Name, "alerts")
 	return true, nil
 }

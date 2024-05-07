@@ -188,27 +188,27 @@ func (mr *MockMetricsMockRecorder) ResetMetricUpgradeWorkerTimeout(arg0, arg1 an
 }
 
 // UpdateMetricClusterCheckFailed mocks base method.
-func (m *MockMetrics) UpdateMetricClusterCheckFailed(arg0 string) {
+func (m *MockMetrics) UpdateMetricClusterCheckFailed(arg0, arg1 string) {
 	m.ctrl.T.Helper()
-	m.ctrl.Call(m, "UpdateMetricClusterCheckFailed", arg0)
+	m.ctrl.Call(m, "UpdateMetricClusterCheckFailed", arg0, arg1)
 }
 
 // UpdateMetricClusterCheckFailed indicates an expected call of UpdateMetricClusterCheckFailed.
-func (mr *MockMetricsMockRecorder) UpdateMetricClusterCheckFailed(arg0 any) *gomock.Call {
+func (mr *MockMetricsMockRecorder) UpdateMetricClusterCheckFailed(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateMetricClusterCheckFailed", reflect.TypeOf((*MockMetrics)(nil).UpdateMetricClusterCheckFailed), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateMetricClusterCheckFailed", reflect.TypeOf((*MockMetrics)(nil).UpdateMetricClusterCheckFailed), arg0, arg1)
 }
 
 // UpdateMetricClusterCheckSucceeded mocks base method.
-func (m *MockMetrics) UpdateMetricClusterCheckSucceeded(arg0 string) {
+func (m *MockMetrics) UpdateMetricClusterCheckSucceeded(arg0, arg1 string) {
 	m.ctrl.T.Helper()
-	m.ctrl.Call(m, "UpdateMetricClusterCheckSucceeded", arg0)
+	m.ctrl.Call(m, "UpdateMetricClusterCheckSucceeded", arg0, arg1)
 }
 
 // UpdateMetricClusterCheckSucceeded indicates an expected call of UpdateMetricClusterCheckSucceeded.
-func (mr *MockMetricsMockRecorder) UpdateMetricClusterCheckSucceeded(arg0 any) *gomock.Call {
+func (mr *MockMetricsMockRecorder) UpdateMetricClusterCheckSucceeded(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateMetricClusterCheckSucceeded", reflect.TypeOf((*MockMetrics)(nil).UpdateMetricClusterCheckSucceeded), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateMetricClusterCheckSucceeded", reflect.TypeOf((*MockMetrics)(nil).UpdateMetricClusterCheckSucceeded), arg0, arg1)
 }
 
 // UpdateMetricNodeDrainFailed mocks base method.

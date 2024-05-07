@@ -29,6 +29,7 @@ const (
 	nameLabel   = "upgradeconfig_name"
 	nodeLabel   = "node_name"
 	alertsLabel = "alerts"
+	reasonLabel = "reason"
 
 	Namespace = "upgradeoperator"
 	Subsystem = "upgrade"
@@ -66,8 +67,8 @@ var pagingAlerts = []string{
 type Metrics interface {
 	UpdateMetricValidationFailed(string)
 	UpdateMetricValidationSucceeded(string)
-	UpdateMetricClusterCheckFailed(string)
-	UpdateMetricClusterCheckSucceeded(string)
+	UpdateMetricClusterCheckFailed(string, string)
+	UpdateMetricClusterCheckSucceeded(string, string)
 	UpdateMetricScalingFailed(string)
 	UpdateMetricScalingSucceeded(string)
 	UpdateMetricUpgradeWindowNotBreached(string)
@@ -196,7 +197,7 @@ var (
 		Subsystem: metricsTag,
 		Name:      "cluster_check_failed",
 		Help:      "Failed on the cluster check step",
-	}, []string{nameLabel})
+	}, []string{nameLabel, reasonLabel})
 	metricScalingFailed = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Subsystem: metricsTag,
 		Name:      "scaling_failed",
@@ -276,15 +277,17 @@ func (c *Counter) UpdateMetricValidationSucceeded(upgradeConfigName string) {
 		float64(0))
 }
 
-func (c *Counter) UpdateMetricClusterCheckFailed(upgradeConfigName string) {
+func (c *Counter) UpdateMetricClusterCheckFailed(upgradeConfigName string, reason string) {
 	metricClusterCheckFailed.With(prometheus.Labels{
-		nameLabel: upgradeConfigName}).Set(
+		nameLabel:   upgradeConfigName,
+		reasonLabel: reason}).Set(
 		float64(1))
 }
 
-func (c *Counter) UpdateMetricClusterCheckSucceeded(upgradeConfigName string) {
+func (c *Counter) UpdateMetricClusterCheckSucceeded(upgradeConfigName string, reason string) {
 	metricClusterCheckFailed.With(prometheus.Labels{
-		nameLabel: upgradeConfigName}).Set(
+		nameLabel:   upgradeConfigName,
+		reasonLabel: reason}).Set(
 		float64(0))
 }
 
